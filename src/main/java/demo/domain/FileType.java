@@ -1,4 +1,4 @@
-package demo.providers;
+package demo.domain;
 
 public enum FileType {
     SENTENCE(1),

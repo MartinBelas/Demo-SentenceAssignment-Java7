@@ -36,7 +36,7 @@ public class SentenceToXmlConverterTest {
 
         String testSentence = "";
         Sentence convertible = new Sentence(testSentence);
-        XmlElement csvExpected = new XmlElement();
+        XmlElement csvExpected = new XmlElement(new ArrayList<String>());
 
         XmlElement result = converter.convertItem(convertible);
         assertEquals(csvExpected.toString(), result.toString());

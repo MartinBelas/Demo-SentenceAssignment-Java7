@@ -1,9 +1,5 @@
 package demo.converters.strategy;
 
-import demo.domain.Sentence;
-import demo.providers.FileProvider;
-import demo.providers.SentenceFileProvider;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -41,9 +37,9 @@ public class SentenceToCsvConverterStrategyIT {
     	logger.info("Convert from small file: {}", smallInputFileName);
     	logger.info("Convert to small csv file: {}", smallOutputFileName);
     	
-    	FileProvider<Sentence> inputFileProvider = new SentenceFileProvider();
+    	File inputFile = new File(smallInputFileName);
 
-        strategy.convert(inputFileProvider.getFile(smallInputFileName), smallOutputFileName);
+        strategy.convert(inputFile, smallOutputFileName);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         
@@ -72,9 +68,9 @@ public class SentenceToCsvConverterStrategyIT {
     	logger.info("Convert from large file: {}", largeInputFileName);
     	logger.info("Convert to large csv file: {}", largeOutputFileName);
     	
-    	FileProvider<Sentence> inputFileProvider = new SentenceFileProvider();
+    	File inputFile = new File(largeInputFileName);
 
-        strategy.convert(inputFileProvider.getFile(largeInputFileName), largeOutputFileName);
+    	strategy.convert(inputFile, largeOutputFileName);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         

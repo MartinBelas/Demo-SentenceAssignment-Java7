@@ -1,22 +1,14 @@
 package demo.converters.strategy;
 
-import demo.domain.Sentence;
-import demo.providers.FileProvider;
-import demo.providers.SentenceFileProvider;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -46,9 +38,9 @@ public class SentenceToXmlConverterStrategyIT {
     	logger.info("Convert from small file: {}", smallInputFileName);
     	logger.info("Convert to small xml file: {}", smallOutputFileName);
     	
-    	FileProvider<Sentence> inputFileProvider = new SentenceFileProvider();
+    	File inputFile = new File(smallInputFileName);
 
-        strategy.convert(inputFileProvider.getFile(smallInputFileName), smallOutputFileName);
+        strategy.convert(inputFile, smallOutputFileName);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         
@@ -73,9 +65,9 @@ public class SentenceToXmlConverterStrategyIT {
     	logger.info("Convert from large file: {}", largeInputFileName);
     	logger.info("Convert to large xml file: {}", largeOutputFileName);
     	
-    	FileProvider<Sentence> inputFileProvider = new SentenceFileProvider();
+    	File inputFile = new File(largeInputFileName);
 
-        strategy.convert(inputFileProvider.getFile(largeInputFileName), largeOutputFileName);
+        strategy.convert(inputFile, largeOutputFileName);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         

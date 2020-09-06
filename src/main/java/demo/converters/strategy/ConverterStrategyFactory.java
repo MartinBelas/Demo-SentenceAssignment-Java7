@@ -1,6 +1,8 @@
 package demo.converters.strategy;
 
-import demo.providers.FileType;
+import java.io.File;
+
+import demo.domain.FileType;
 
 public class ConverterStrategyFactory {
 
@@ -10,8 +12,9 @@ public class ConverterStrategyFactory {
         NONE;
     }
 
-    //public ConverterStrategy<?, ?> getStrategy(FileType inputFileType, FileType outputFileType) {
-    public ConverterStrategy getStrategy(FileType inputFileType, FileType outputFileType) {
+    public ConverterStrategy getStrategy(File inputFile, FileType outputFileType) {
+    	
+    	FileType inputFileType = getFileType(inputFile);
 
         ConverterStrategyType strategyType = getStrategyType(inputFileType, outputFileType);
 
@@ -28,7 +31,29 @@ public class ConverterStrategyFactory {
         }
     }
 
-    private static ConverterStrategyType getStrategyType(FileType inputFileType, FileType outputFileType) {
+    private FileType getFileType(File inputFile) {
+    	
+    	String extension = "";
+
+    	int i = inputFile.getName().lastIndexOf('.');
+    	if (i > 0) {
+    	    extension = inputFile.getName().substring(i+1).toUpperCase();
+    	}
+    	
+        switch (extension) {
+
+	        case "CSV":
+	            return FileType.CSV;
+	
+	        case "XML":
+	            return FileType.XML;
+	
+	        default:
+	        	return FileType.SENTENCE;
+	    }
+	}
+
+	private static ConverterStrategyType getStrategyType(FileType inputFileType, FileType outputFileType) {
 
         // Sentences to CSV or XML
         if (inputFileType.equals(FileType.SENTENCE)) {

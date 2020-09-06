@@ -7,10 +7,6 @@ public class XmlElement implements Convertible {
 
     private List<String> words;
 
-    public XmlElement() {
-		this.words = new ArrayList<>();
-	}
-    
     public XmlElement(List<String> words) {
 		this.words =  new ArrayList<>(words);
 	}
