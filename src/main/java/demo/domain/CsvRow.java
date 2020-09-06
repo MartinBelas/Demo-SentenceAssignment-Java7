@@ -1,21 +1,29 @@
 package demo.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CsvRow implements Convertible {
 
-    /**
-     * Used in SentenceToCsvConverter to create the CSV file header.
-     * The sentence's length is variable and we need to know the longest one before conversion starts to create the header.
-     * It can has very bad performance impact to try to find out the value dynamically for large files or huge streams.
-     */
-    public final static int DEFAULT_MAX_COUNT_OF_ITEMS = 100;
-
-    private final String csvRow;
-
-    public CsvRow(String csvRow) {
-        this.csvRow = csvRow.trim();
+    private List<String> words;
+    
+    public CsvRow(List<String> words) {
+        List<String> clonedWords = new ArrayList<>(words);
+        this.words = clonedWords;
     }
 
-    public String toString() {
-        return this.csvRow;
+    @Override
+    public String getConvertedToString() {
+
+        String csvRow = "";
+        for (String word : this.words) {
+            csvRow += (" "+word+","); 
+        }
+        
+        if (csvRow.endsWith(",")) {
+            csvRow = csvRow.trim().substring(0, csvRow.length() - 2);
+        }
+        
+        return csvRow;
     }
 }

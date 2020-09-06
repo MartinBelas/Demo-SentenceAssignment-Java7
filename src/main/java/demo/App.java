@@ -30,21 +30,17 @@ public class App {
         // 2. ask for output file type, for example xml or csv (from enum)
         FileType outputFileType = null;
         while (outputFileType == null) {
-            outputFileType = getOutputFileType();
+            outputFileType = askForOutputFileType();
         }
-        logger.info("Output Stream Type: {}", outputFileType.name());
+        logger.info("Output File Type: {}", outputFileType.name());
 
         // 3. select the conversion strategy
         ConverterStrategy strategy = new ConverterStrategyFactory().getStrategy(inputFile, outputFileType);
 
-        // 4. create output file name with the right extension
-        String outputFileName = getOutputFileName(inputFile.getName(), outputFileType.name().toLowerCase());
-        logger.info("outputFileName: {}", outputFileName);
+        // 4. start the conversion and export to output file
+        File outputFile = strategy.convert(inputFile);
 
-        // 5. start the conversion and export to output file
-        File outputFile = strategy.convert(inputFile, outputFileName);
-
-        // 6. write the output file location
+        // 5. write the output file location
         System.out.println("Finished.");
         if (outputFile != null) {
             System.out.println("Output file: " + outputFile.getAbsolutePath());
@@ -81,7 +77,7 @@ public class App {
         return f;
     }
 
-    private static FileType getOutputFileType() {
+    private static FileType askForOutputFileType() {
 
         FileType result = null;
 
@@ -112,15 +108,5 @@ public class App {
         }
 
         return result;
-    }
-
-    private static String getOutputFileName(String fileName, String outputSuffix) {
-        
-        int i = fileName.lastIndexOf('.');
-        if (i > 0) {
-            fileName = fileName.substring(0, i);
-        }
-
-        return fileName + "." + outputSuffix;
     }
 }

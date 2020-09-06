@@ -28,6 +28,11 @@ public class Sentence implements Convertible {
         }
         this.sentence = sentence;
     }
+    
+    @Override
+    public String getConvertedToString() {
+        return this.sentence;
+    }
 
     /**
      * Prepares (lazy executes) and provides sorted List of all words in the sentence.
@@ -38,11 +43,8 @@ public class Sentence implements Convertible {
         if (!this.isWordsPrepared) {
             prepareWords();
         }
-        return this.getClonedWords();
-    }
-
-    public String toString() {
-        return this.sentence;
+        List<String> clonedWords = new ArrayList<>(this.words);
+        return clonedWords;
     }
 
     private void prepareWords() {
@@ -64,11 +66,5 @@ public class Sentence implements Convertible {
     	this.words = nonBlank;
 
         this.isWordsPrepared = true;
-    }
-
-    private List<String> getClonedWords() {
-
-        List<String> clonedWords = new ArrayList<>(this.words);
-        return clonedWords;
     }
 }

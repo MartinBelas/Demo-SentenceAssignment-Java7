@@ -77,13 +77,12 @@ When you run the application, it will process in the following steps:
 
 1. Asks for the name (and location) of input file with the text.
 
-2. Asks for output file type, for example XML or CSV
+2. Asks for output file type, for example XML or CSV.
 
 3. Then it selects select the conversion strategy, according to output file type. The input file type is "Sentence" by default.
         
-4. Creates output file name accordin the input file name, but with the right extension (.csv or .xml).
+4. Run the conversion and export to output file. Tis task is processed by the selected strategy.
+The output file name is created according to the input file name, but with the right extension (.csv or .xml).
 
-5. Then start the conversion and export to output file. Tis task is processed by the selected strategy.
-
-6. Finally it writes the output file location
+5. Finally it writes the output file location.
 

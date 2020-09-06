@@ -10,7 +10,7 @@ public class NoneConverterStrategy implements ConverterStrategy {
     private static Logger logger = LoggerFactory.getLogger(NoneConverterStrategy.class);
 
 	@Override
-	public File convert(File inputFile, String outputFileName) {
+	public File convert(File inputFile) {
         logger.info("Convert with NoneConversionStrategy.");
 		return null;
 	}

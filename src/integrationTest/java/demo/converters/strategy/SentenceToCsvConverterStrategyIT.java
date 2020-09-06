@@ -39,7 +39,7 @@ public class SentenceToCsvConverterStrategyIT {
     	
     	File inputFile = new File(smallInputFileName);
 
-        strategy.convert(inputFile, smallOutputFileName);
+        File output = strategy.convert(inputFile);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         
@@ -51,7 +51,8 @@ public class SentenceToCsvConverterStrategyIT {
         String csvRow1 = brTest.readLine().substring(0, 24);
         brTest.close();
         
-        assertEquals("Output CSV file must contain header..", header, ",Word 0,Word 1,Word 2,");
+        assertEquals("Output file must be same with right suffix.", output.getAbsolutePath(), smallOutputFileName);
+        assertEquals("Output CSV file must contain header.", header, ",Word 0,Word 1,Word 2,");
         assertEquals("Output CSV file must contain row with CSV data.", csvRow1, "Sentence 1, he, shocking");
     }
 
@@ -70,7 +71,7 @@ public class SentenceToCsvConverterStrategyIT {
     	
     	File inputFile = new File(largeInputFileName);
 
-    	strategy.convert(inputFile, largeOutputFileName);
+    	File output = strategy.convert(inputFile);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         
@@ -82,6 +83,7 @@ public class SentenceToCsvConverterStrategyIT {
         String csvRow1 = brTest.readLine().substring(0, 48);
         brTest.close();
         
+        assertEquals("Output file must be same with right suffix.", output.getAbsolutePath(), largeOutputFileName);
         assertEquals("Output CSV file must contain header..", header, ",Word 0,Word 1,Word 2,");
         assertEquals("Output CSV file must contain row with CSV data.", csvRow1, "Sentence 1, adipiscing, amet, consectetur, dolor");
     }

@@ -8,19 +8,11 @@ public class XmlElement implements Convertible {
     private List<String> words;
 
     public XmlElement(List<String> words) {
-		this.words =  new ArrayList<>(words);
+        List<String> clonedWords = new ArrayList<>(words);
+        this.words = clonedWords;
 	}
 
-	/**
-     * Prepares (lazy executes) and provides sorted List of all words in the sentence.
-     *
-     * @return deep copy of the List of all words of the sentence
-     */
-    public List<String> getWords() {
-        return new ArrayList<>(this.words);
-    }
-    
-    public String toString() {
+    public String getConvertedToString() {
     	
     	String openingTag = new StringBuilder()
     		.append("<sentence> \r\n")

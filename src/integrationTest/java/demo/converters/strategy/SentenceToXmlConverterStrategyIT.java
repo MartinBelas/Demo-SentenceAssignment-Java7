@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.XMLReader;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -40,7 +41,7 @@ public class SentenceToXmlConverterStrategyIT {
     	
     	File inputFile = new File(smallInputFileName);
 
-        strategy.convert(inputFile, smallOutputFileName);
+    	File output = strategy.convert(inputFile);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         
@@ -54,6 +55,8 @@ public class SentenceToXmlConverterStrategyIT {
         XMLReader parser = saxLevel1.getXMLReader();
         parser.parse(smallOutputFileName);
         logger.info("Test result: " + smallOutputFileName + " parsed without errors");
+        
+        assertEquals("Output file must be same with right suffix.", output.getAbsolutePath(), smallOutputFileName);
     }
 
     @Test
@@ -67,7 +70,7 @@ public class SentenceToXmlConverterStrategyIT {
     	
     	File inputFile = new File(largeInputFileName);
 
-        strategy.convert(inputFile, largeOutputFileName);
+    	File output = strategy.convert(inputFile);
         
         logger.info("Finished stream conversion in testConvertFromSmallTextFile.");
         
@@ -81,6 +84,8 @@ public class SentenceToXmlConverterStrategyIT {
         XMLReader parser = saxLevel1.getXMLReader();
         parser.parse(largeOutputFileName);
         logger.info("Test result: " + largeOutputFileName + " parsed without errors");
+        
+        assertEquals("Output file must be same with right suffix.", output.getAbsolutePath(), largeOutputFileName);
     }
 
 }

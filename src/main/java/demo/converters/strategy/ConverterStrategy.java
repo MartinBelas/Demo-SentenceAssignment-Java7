@@ -4,5 +4,5 @@ import java.io.File;
 
 public interface ConverterStrategy {
 
-    File convert(File inputFile, String outputFileName);
+    File convert(File inputFile);
 }
